@@ -1,0 +1,42 @@
+﻿{
+  "parameters": {
+    "AzureResourceConnector": {
+      "AzureResourceConnector_TenantId": {
+        "defaultValue": "",
+        "displayName": "AAD Tenant ID",
+        "description": "Enter the Azure Active Directory Tenant ID",
+        "tooltip": "See this blog post on how to get your AAD Tenant ID: http://blog.davidebbo.com/2014/12/azure-service-principal.html",
+        "constraints": {
+          "required": "true"
+        }
+      },
+        "AzureResourceConnector_SubscriptionId": {
+            "defaultValue": "",
+            "displayName": "Azure Subscription Id",
+            "description": "Enter the Subscription ID of your Azure Subscription.",
+            "tooltip": "See this blog post on how to get your Subscirption ID: http://blog.davidebbo.com/2014/12/azure-service-principal.html",
+            "constraints": {
+                "required": "true"
+            }
+        },
+        "AzureResourceConnector_ClientId": {
+            "defaultValue": "",
+            "displayName": "Service Principal Client Id",
+            "description": "Enter the Client ID of your Service Principal.",
+            "tooltip": "See this blog post on how to get your Subscirption ID: http://blog.davidebbo.com/2014/12/azure-service-principal.html",
+            "constraints": {
+                "required": "true"
+            }
+        },
+              "AzureResourceConnector_ClientSecret": {
+        "defaultValue": "",
+        "displayName": "Service Principal Secret",
+        "description": "Enter the Client Secret of your Service Principal.",
+        "tooltip": "See this blog post on how to get your Subscirption ID: http://blog.davidebbo.com/2014/12/azure-service-principal.html",
+        "constraints": {
+          "required": "true"
+        }
+      }
+    }
+  }
+}

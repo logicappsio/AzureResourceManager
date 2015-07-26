@@ -1,0 +1,51 @@
+﻿{
+  "$schema": "http://schemas.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$system": {
+      "type": "object"
+    },
+    "AzureResourceConnector_TenantId": {
+      "type": "string"
+    },
+    "AzureResourceConnector_SubscriptionId": {
+        "type": "string"
+    },
+    "AzureResourceConnector_ClientId": {
+        "type": "string"
+    },
+        "AzureResourceConnector_ClientSecret": {
+      "type": "securestring"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-04-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[parameters('$system').siteName]",
+      "location": "[parameters('$system').location]",
+      "properties": {
+        "siteConfig": {
+          "appSettings": [
+            {
+              "name": "AzureResourceConnector_TenantId",
+              "value": "[parameters('AzureResourceConnector_TenantId')]"
+            },
+            {
+                "name": "AzureResourceConnector_SubscriptionId",
+                "value": "[parameters('AzureResourceConnector_SubscriptionId')]"
+            },
+                        {
+              "name": "AzureResourceConnector_ClientId",
+              "value": "[parameters('AzureResourceConnector_ClientId')]"
+            },
+            {
+              "name": "AzureResourceConnector_ClientSecret",
+              "value": "[parameters('AzureResourceConnector_ClientSecret')]"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
