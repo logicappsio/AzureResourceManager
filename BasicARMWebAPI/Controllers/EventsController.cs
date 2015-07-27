@@ -57,11 +57,10 @@ namespace BasicARMWebAPI.Controllers
 
             var startTimestamp = endTimestamp;
 
-            var segments = triggerState.Split('/');
-
-            if (segments.Count() == 2 && 
+            if (triggerState != null &&
+                triggerState.Split('/').Count() == 2 && 
                 DateTime.TryParseExact(
-                segments[1],
+                triggerState.Split('/')[1],
                 "o",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AdjustToUniversal, out startTimestamp))
