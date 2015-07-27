@@ -18,6 +18,7 @@ using TRex.Metadata;
 
 namespace BasicARMWebAPI.Controllers
 {
+
     [CloudExceptionFilter]
     public class MetricsController : ApiController
     {

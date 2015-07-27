@@ -16,7 +16,7 @@ namespace BasicARMWebAPI.Controllers
     [CloudExceptionFilter]
     public class ResourceGroupsController : ApiController
     {
-        [Metadata("List resource groups", "List all of the resource groups in the subscription.")]
+        [Metadata("List resource groups", "List all of the resource groups in the subscription.", VisibilityType.Advanced)]
         [HttpGet, Route("api/ResourceGroups")]
         public async Task<IEnumerable<Microsoft.Azure.Management.Resources.Models.ResourceGroup>> ListResourceGroups()
         {

@@ -56,8 +56,12 @@ namespace BasicARMWebAPI.Controllers
             var endTimestamp = DateTime.UtcNow;
 
             var startTimestamp = endTimestamp;
-            if (DateTime.TryParseExact(
-                triggerState,
+
+            var segments = triggerState.Split('/');
+
+            if (segments.Count() == 2 && 
+                DateTime.TryParseExact(
+                segments[1],
                 "o",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AdjustToUniversal, out startTimestamp))
@@ -78,13 +82,13 @@ namespace BasicARMWebAPI.Controllers
                         }
 
                         return Request.EventTriggered(returnedEvent,
-                                                        triggerState: returnedEvent.EventTimestamp.ToString("o"),
+                                                        triggerState: "LastEvent/" +  returnedEvent.EventTimestamp.ToString("o"),
                                                         pollAgain: pollAgain);
                     }
                 }
             }
             // Let the Logic App know we don't have any data for it
-            return Request.EventWaitPoll(retryDelay: null, triggerState: endTimestamp.ToString("o"));
+            return Request.EventWaitPoll(retryDelay: null, triggerState: "LastEvent/" + endTimestamp.ToString("o"));
         }
 
         private async static Task<IEnumerable<EventData>> GetEventData(string resource, string status, DateTime startTimestamp, DateTime endTimestamp)
