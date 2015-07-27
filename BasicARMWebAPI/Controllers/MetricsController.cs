@@ -112,16 +112,16 @@ namespace BasicARMWebAPI.Controllers
                     break;
             }
 
-            if (thresholdPassed && (triggerState.Equals("0") || triggerState.Equals("")))
+            if (thresholdPassed && (triggerState == null || triggerState.Equals("")))
             {
                 // If there are other events to process tell the engine to get an new event every second
                 return Request.EventTriggered(outValue,
-                                                triggerState: "1",
+                                                triggerState: "LastEvent/" + outValue.Timestamp.ToString("o"),
                                                 pollAgain: null);
             }
 
             // Let the Logic App know we don't have any data for it
-            return Request.EventWaitPoll(retryDelay: null, triggerState: thresholdPassed ? "1" : "0");
+            return Request.EventWaitPoll(retryDelay: null, triggerState: thresholdPassed ? triggerState : "");
         }
 
         private static async Task<IEnumerable<MetricValue>> GetMetricData(string resource, string metricName, DateTime startTimestamp, DateTime endTimestamp)
